@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sigin in</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+    <div id="userLogin">
+        <form name="sign_in_frm" action="/user/login" method="post" v-on:submit="sign_in">
+            <div id="sign_area">
+                <p>
+                    <input type="email" name="email" id="email" value="" placeholder="your_email@email.com" v-model="user_email" required="required" />
+                </p>
+                <p>
+                    <input type="password" name="user_pw" id="user_pw" value="" placehodler="password" v-model="user_pw" required="required" />
+                </p>
+            </div>
+            <div class="btn_area">
+                <p><button>Sign In</button></p>
+                <p>forgot password? <a href="">find password</a> </p>
+                <p>Did you have not Account? <a href="">find password</a> </p>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const user_login = new Vue({
+        el: "#userLogin",
+        name: "LoginPage",
+        data: {
+            title: 'user_login',
+            user_email: '',
+            user_pw: ''
+        },
+        methods: {
+            sign_in: () => {
+                if (!vm.user_email) {
+                    alert('email을 입력하세요.')
+                    return
+                } else if (!vm.user_pw) {
+                    alert('암호를 입력하세요')
+                    return     
+                } else {
+                    
+                }
+            }
+        }
+    })
+
+    const vm = user_login.$data
+</script>
+
+</html>

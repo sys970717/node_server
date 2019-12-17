@@ -1,0 +1,13 @@
+{
+    "type": "mysql",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "username": "test",
+    "password": "test",
+    "entities": ["board/entity/*.ts"],
+    "synchronize": true,
+    "database": "spring_test",
+    "logging": ["query", "error"],
+    "maxQueryExecutionTime": 1000,
+    "logger": "file"
+}

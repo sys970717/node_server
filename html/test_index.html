@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HIHI</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <div class="testDiv">
+            <input type="text" name="message" v-model="message" value=""/>
+        </div>
+        
+        <table>
+            <colgorup>
+                <col width="10%" />
+                <col width="10%" />
+                <col width="15%" />
+                <col width="10%" />
+            </colgorup>
+            <thead>
+                <tr>
+                    <th>이메일</th>
+                    <th>이름</th>
+                    <th>암호</th>
+                    <th>인증키</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users" v-model="users">
+                    <td>{{user.email}}</td>
+                    <td>{{user.user_nm}}</td>
+                    <td>{{user.user_pw}}</td>
+                    <td>{{user.auth_key}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" v-on:click="user_list">리스트 불러오기</button>
+        <button type="button" >Sign in</button>
+        <button type="button" v-on:cilck="createView">유저 생성 폼</button>
+        <div id="createForm" v-if=>
+            SIGN UP
+            <form name="createForm" id="createForm" method="post" @submit.prevent="createUser">
+                <p>이름 <input type="text" name="user_nm" v-model="createInfo.user_nm" value="" required="required" placeholde="이름을 입력하세요." /></p>
+                <p>암호 <input type="password" name="user_pw" v-model="createInfo.user_pw" value="" required="required" replaceholder="암호를 입력하세요." /></p>
+                <p>이메일 <input type="email" name="email" v-model="createInfo.email" value="" required="required" replaceholder="이메일을 입력하세요." /></p>
+                <p>인증키 <input type="text" name="auth_key" v-model="createInfo['auth_key']" value="" required="required" replaceholder="인증키를 입력하세요." /></p>
+                <button>submit</button>
+            </form>
+        </div>
+
+        <signin-area></signin-area>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.component('signinArea', {
+        // 옵션
+        props: ['user_email', 'user_pw'],
+        template: `
+                <div id="userLogin">
+                    <form name="sign_in_frm" action="/user/login" method="post" enctype="application//json" v-on:submit="sign_in">
+                        <div id="sign_area">
+                            <p>
+                                <input type="email" name="email" id="email" value="" placeholder="your_email@email.com" v-bind="user_email" required="required" />
+                            </p>
+                            <p>
+                                <input type="password" name="user_pw" id="user_pw" value="" placehodler="password" v-bind="user_pw" required="required" />
+                            </p>
+                        </div>
+                        <div class="btn_area">
+                            <p><button>Sign In</button></p>
+                            <p>forgot password? <a href="">find password</a> </p>
+                            <p>Did you have not Account? <a href="">find password</a> </p>
+                        </div>
+                    </form>
+                </div>
+        `,
+        methods: {
+            sign_in: () => {
+                console.log()
+                if (!this.props.user_email) {
+                    alert('email을 입력하세요.')
+                    return
+                } else if (!this.user_pw) {
+                    alert('암호를 입력하세요')
+                    return     
+                } else {
+                    
+                }
+            }
+        }
+    })
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'oppopiyoi',
+            users: [],
+            createViewFlag: false,
+            createInfo: {
+                user_nm: '',
+                user_pw: '',
+                email: '',
+                auth_key: ''
+            }
+        },
+        methods: {
+            user_list: (event) => {
+                var users = this.users;
+                axios.get('http://localhost:3000/user/list')
+                .then((response) => {
+                    app.$data.users = response.data
+                })
+                .catch((err) => {
+                    console.error('error > '+err)
+                })
+            },
+            createView: (event) => {
+                this.createViewFlag = true
+            },
+            createUser: (event) => {
+                var info = vm.createInfo
+                axios.post('http://localhost:3000/user/create', info)
+                .then((response) => {
+                    alert('유저가 생성되었습니다.')
+                    return
+                }).catch((err) => {
+                    alert('에러가 발생했습니다. => ', err)
+                    return;
+                })
+            },
+        },
+    })
+
+    const vm = app.$data
+</script>
+
+</html>

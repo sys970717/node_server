@@ -1,0 +1,74 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Hello World",
+        "version": "1.0.0",
+        "description": "A sample API"
+    },
+    "host": "localhost: 3000",
+    "basePath": "/",
+    "schemes": ["http", "https"],
+    "tags": [
+        {
+            "name": "user",
+            "description": "유저 정보 API",
+            "externalDocs": {
+                "description": "Find out more"
+            }
+        }
+    ],
+    "paths": {
+        "/user/list": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "get all user list",
+                "operationId": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": {},
+                "responses": {
+                    "405": {
+                        "description": "invalid input"
+                    }
+                }
+            }
+        },
+        "/user/create" : {
+            "post": {
+                "tags": ["user"],
+                "summary": "sign up user",
+                "parameters": [{
+                    "in": "body",
+                    "name": "email",
+                    "required": "true"
+                }, {
+                    "in": "body",
+                    "name": "user_pw",
+                    "required": "true"
+                }]
+            }
+        }
+    },
+    "definitions": {
+        "UserInfo": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "auth_key": {
+                    "type": "integer"
+                },
+                "user_pw": {
+                    "type": "string"
+                },
+                "user_nm": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
