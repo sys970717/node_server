@@ -20,7 +20,10 @@
 ## 소스코드 실행 방법
 
 > 
-```javascript npm start ```
+```javascript
+ npm start
+```
+
 > 명령어로 프로젝트 시작 가능.
 
 > 현재까지는 로컬에서 개인작업을 진행했었기 때문에 mysql 테이블에 대한 정의를 owner 가 가지고 있음. typeorm 옵셔을 잘 주면 테이블도 생성할 수 있으니 해당 내용은 참고.
