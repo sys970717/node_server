@@ -16,6 +16,7 @@
 
 >
 ```javascript
+ npm install -g ts-loader webpack webpack-cli typescript
  npm install // 명령어로 프로젝트 내에 설정된 라이브러리 설치.
  npm start // 명령어로 프로젝트 시작 가능.
 ```
