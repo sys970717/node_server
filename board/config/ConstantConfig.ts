@@ -1,6 +1,6 @@
 class ConstatntsConfig {
     public configure: {
-        dev: '',
+        dev: '/Users/sys970717/Desktop/Application/practice/node_server',
         prod: ''
     }
 
@@ -10,7 +10,7 @@ class ConstatntsConfig {
 
     constructor() {
         this.configure = {
-            dev: '',
+            dev: '/Users/sys970717/Desktop/Application/practice/node_server',
             prod: ''
         }
     }
