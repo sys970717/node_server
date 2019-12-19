@@ -6,9 +6,12 @@
 > 
 ## 소스코드 받아가는 방법
 > 소스 다운로드 ```git clone https://github.com/sys970717/node_server.git```
+
 > 소스 수정 후 업로드(local git repository) ``` git add [변경파일] ```
+
 > Commit 메시지 ``` git commit -m "[메시지] ``` 
 > - 커밋메시지 참고 블로그: https://meetup.toast.com/posts/106
+
 > 실제 repository PUSH ``` git push -u origin develop ```
 > - git Flow 방식을 기용한 브랜치 관리를 진행할 예정.
 
