@@ -39,11 +39,12 @@
     "ts-node": "^8.5.2",
     "typeorm": "^0.2.21",
     "types-installer": "^1.6.3",
-    "typescript": "^3.7.2",
+    "typescript": "^3.7.3",
     "url": "^0.11.0",
     "uuid": "^3.3.3",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "xmlhttprequest-ts": "^1.0.1"
   },
   "devDependencies": {
     "@types/swagger-jsdoc": "^3.0.2",

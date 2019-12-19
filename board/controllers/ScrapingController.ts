@@ -1,14 +1,15 @@
 import { Request, Response } from 'express'
 import { getRepository, Equal } from 'typeorm'
 import uuid from '../util/CreateUUID'
-const exchangeReq = require('../util/exchangeRate.js');
+import { XMLHttpRequest } from 'xmlhttprequest-ts'
+const exchangeReq = require('../util/exchangeRate.js')
 
 class ScrapingController {
     constructor() {
 
     }
 
-    public getExchangeRate = async function (req: Request, res: Response) {
+    public getExchangeRate = function (req: Request, res: Response) {
         let bodyOption = req.params.data;
       
         // 날씨 취득하기
@@ -18,11 +19,28 @@ class ScrapingController {
           params: `?codes=FRX.${bodyOption}`
         }
       
-        exchangeReq(options).then(( data: JSON) => {
-          let rateData = data;
-          console.log(new uuid().tokens)
-        //   client.hset(uuidToken.getToken(), date.yyyymmddHHmiss().substring(0,8), JSON.stringify(data));
-          res.status(200).send(JSON.stringify(data))
+        exchangeReq(options).then((response: any) => {
+          let {data} = response;
+          // console.log(new uuid().tokens);
+          // client.hset(uuidToken.getToken(), date.yyyymmddHHmiss().substring(0,8), JSON.stringify(data));
+          console.log(data);
+          data = data[0];
+
+          let exprotData = {
+            currencyName: data.currencyName,
+            datetime: data.date+data.time,
+            '매매기준율': data.basePrice,
+            openingPrice: data.openingPrice,
+            highPrice: data.highPrice,
+            lowPrice: data.lowPrice,
+            '수수료': data.exchangeCommission,
+            '전일대비': data.changePrice
+
+          };
+
+          console.log(exprotData)
+
+          res.status(200).json(data)
         });
     }
 }

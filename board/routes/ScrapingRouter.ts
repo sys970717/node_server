@@ -12,7 +12,7 @@ class ScrapingRouter {
 
         var scrapingController = new ScrapingController()
            
-        this.router.get('/exchangeRate/:data', bodyParserForJson, scrapingController.getExchangeRate)
+        this.router.get('/:data', bodyParserForJson, scrapingController.getExchangeRate)
         // this.router.post('/create', bodyParserForJson, scrapingController.signUp)
         // this.router.post('/login', bodyParserForJson, scrapingController.signIn)
     }    
