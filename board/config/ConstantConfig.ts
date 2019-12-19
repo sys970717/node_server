@@ -1,6 +1,6 @@
 class ConstatntsConfig {
     public configure: {
-        dev: 'D:/PROJECT/1.게시판 프로젝트/server',
+        dev: '',
         prod: ''
     }
 
@@ -10,7 +10,7 @@ class ConstatntsConfig {
 
     constructor() {
         this.configure = {
-            dev: 'D:/PROJECT/1.게시판 프로젝트/server',
+            dev: '',
             prod: ''
         }
     }

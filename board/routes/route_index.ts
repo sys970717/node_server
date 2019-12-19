@@ -5,7 +5,10 @@ import ConstatntsConfig from '../config/ConstantConfig'
 import swaggerUi from 'swagger-ui-express'
 import swaggerSpec from '../swaggerSpec'
 import UserRouter from './UserRouter'
+import ScrapingRouter from './ScrapingRouter'
 import cors from 'cors'
+
+import path from 'path'
 
 class Routes {
     public router: express.Router
@@ -36,6 +39,7 @@ class Routes {
                 this.router.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(new swaggerSpec().jsdoc))
                 
                 this.router.use('/user', new UserRouter().router)
+                this.router.use('/exchange', new ScrapingRouter().router)
             })
         })
     }    
