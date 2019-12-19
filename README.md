@@ -6,14 +6,20 @@
 > 
 ## 소스코드 받아가는 방법
 > 소스 다운로드 ```git clone https://github.com/sys970717/node_server.git```
+
 > 소스 수정 후 업로드(local git repository) ``` git add [변경파일] ```
+
 > Commit 메시지 ``` git commit -m "[메시지] ``` 
 > - 커밋메시지 참고 블로그: https://meetup.toast.com/posts/106
+
 > 실제 repository PUSH ``` git push -u origin develop ```
 > - git Flow 방식을 기용한 브랜치 관리를 진행할 예정.
 
-## 소스코드 실행 방법
+### 설정내용
+> 1. board/config/ConstantConfig.ts 파일을 열어 dev에 프로젝트 디렉터리 경로를 입력한다.
+> 2. ormconfig.json => 만일 접속하는 계정 및 데이터베이스 이름이 다를 경우 해당 파일 또한 수정한다.
 
+## 소스코드 실행 방법
 >
 ```javascript
  npm install -g ts-loader webpack webpack-cli typescript
