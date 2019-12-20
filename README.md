@@ -1,7 +1,10 @@
 # node_server
 
 타입스크립트와 노드 JS, TypeORM 등의 라이브러리를 사용하여 만든 nodeJS 백엔드 API 게시판 서버입니다.
- 
+
+URL : http://15.164.214.86:3000
+
+위 URL 로 접속하시면 정상적인 웹서비스가 동작하고 있음을 알 수 있습니다.
 ***
 > 
 ## 소스코드 받아가는 방법
@@ -31,7 +34,7 @@
 ## TODO LIST
 > - swagger 문서 작성.
 > - front 작업 필요 --> 해당 front 는 이전엔 vue로 작업을 하려 했으나 현재 고민중 ( 2019/12/18... )
-> - aws ec2 에 반영하여 실제 서비스 화면을 만들어볼 예정.
+> - ~ aws ec2 에 반영하여 실제 서비스 화면을 만들어볼 예정.
 > - 향후 환율 API 또한 추가해 환율 추이를 볼 수 있는 차트 뷰 반영 예정.
 
 ## Inpra 공부
@@ -41,3 +44,5 @@
 > - https://blog.cosmosfarm.com/archives/248/%EC%9A%B0%EB%B6%84%ED%88%AC-18-04-%EB%8F%84%EC%BB%A4-docker-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95/
 > - https://nicewoong.github.io/development/2017/10/09/basic-usage-for-docker/
 > - https://jistol.github.io/docker/2017/09/01/docker-redis/
+
+
