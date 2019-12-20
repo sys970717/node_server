@@ -9,6 +9,7 @@ import ScrapingRouter from './ScrapingRouter'
 import cors from 'cors'
 
 import path from 'path'
+import {env} from 'process'
 
 class Routes {
     public router: express.Router
@@ -19,12 +20,20 @@ class Routes {
 
         this.router.use(cors())
 
-        var rootPath = new ConstatntsConfig().configure.dev
+        const CONSTANT_CONFIG = new ConstatntsConfig().configure;
+        let rootPath = CONSTANT_CONFIG.dev
         fs.readFile(rootPath+'/board/ormconfig.json', 'utf8', (err, option) => {
             if(err) {
                 console.error('cause error ', err)
             }
-            createConnection(JSON.parse(option)).then(connection => {
+            let connectionMetaData = JSON.parse(option);
+            let DB_INFO = JSON.parse(JSON.stringify(CONSTANT_CONFIG.DB_INFO));
+            console.log(DB_INFO.dev.DB_ACCOUNT);
+            connectionMetaData.username = env.DB_ACCOUNT || DB_INFO.prod.DB_ACCOUNT;
+            connectionMetaData.password = env.DB_PASSWORD || DB_INFO.prod.DB_PASSWORD;
+            connectionMetaData.host = env.DB_HOST || DB_INFO.prod.DB_HOST;
+
+            createConnection(connectionMetaData).then(connection => {
                 this.router.get("/", (req: express.Request, res: express.Response) => {
                     fs.readFile(rootPath + '/html/test_index.html', 'utf8', (err, data) => {
                         if(err) {
