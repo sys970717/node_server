@@ -28,7 +28,7 @@ class ScrapingController {
 
           let exprotData = {
             currencyName: data.currencyName,
-            datetime: data.date+data.time,
+            datetime: `${data.date} ${data.time}`,
             '매매기준율': data.basePrice,
             openingPrice: data.openingPrice,
             highPrice: data.highPrice,
