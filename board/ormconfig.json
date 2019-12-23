@@ -1,12 +1,12 @@
 {
     "type": "mysql",
     "host": "",
-    "port": 3306,
+    "port": "",
     "username": "",
     "password": "",
     "entities": ["board/entity/*.ts"],
     "synchronize": true,
-    "database": "spring_test",
+    "database": "",
     "logging": ["query", "error"],
     "maxQueryExecutionTime": 1000,
     "logger": "file"
