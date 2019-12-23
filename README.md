@@ -36,7 +36,7 @@
 > - ~aws ec2 에 반영하여 실제 서비스 화면을 만들어볼 예정.
 > - 향후 환율 API 또한 추가해 환율 추이를 볼 수 있는 차트 뷰 반영 예정.
 
-## Inpra 공부
+## infra 공부
 > AWS --> 생활코딩 공부 중 ( https://opentutorials.org/course/2717/11273 )
 
 > Docker
