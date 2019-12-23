@@ -1,7 +1,10 @@
+import * as path from 'path';
+import {config} from 'dotenv';
+import {env} from 'process';
+
 class ConstatntsConfig {
     public configure: {
-        dev: string,
-        prod: string,
+        CONFIG_DIR: string,
         DB_INFO: Object
     }
 
@@ -10,19 +13,23 @@ class ConstatntsConfig {
     }
 
     constructor() {
+        config();
         this.configure = {
-            dev: '/Users/sys970717/Desktop/Application/practice/node_server',
-            prod: '',
+            CONFIG_DIR: path.join(__dirname, '../'),
             DB_INFO: {
                 dev: {
                     DB_ACCOUNT: 'test',
                     DB_PASSWORD: 'test',
-                    DB_HOST: '127.0.0.1'
+                    DB_HOST: '127.0.0.1',
+                    DB_PORT: '3306',
+                    DB_NAME: 'test'
                 },
                 prod: {
-                    DB_ACCOUNT: 'test',
-                    DB_PASSWORD: 'test',
-                    DB_HOST: 'mysql8.cgdlxt0waf4p.ap-northeast-2.rds.amazonaws.com'
+                    DB_ACCOUNT: env.DB_ACCOUNT,
+                    DB_PASSWORD: env.DB_PASSWORD,
+                    DB_HOST: env.DB_HOST,
+                    DB_PORT: env.DB_PORT,
+                    DB_NAME: env.DB_NAME
                 }
             }
         }
