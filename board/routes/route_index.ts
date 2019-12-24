@@ -29,14 +29,11 @@ class Routes {
             let connectionMetaData = JSON.parse(option);
             let DB_INFO = JSON.parse(JSON.stringify(CONSTANT_CONFIG.DB_INFO));
 
-            console.log('asdf ', DB_INFO.prod.DB_HOST);
             connectionMetaData.username = DB_INFO.prod.DB_ACCOUNT || DB_INFO.dev.DB_ACCOUNT;
             connectionMetaData.password = DB_INFO.prod.DB_PASSWORD || DB_INFO.dev.DB_PASSWORD;
             connectionMetaData.host = DB_INFO.prod.DB_HOST || DB_INFO.dev.DB_HOST;
             connectionMetaData.port = DB_INFO.prod.DB_PORT || DB_INFO.dev.DB_PORT;
             connectionMetaData.database = DB_INFO.prod.DB_NAME || DB_INFO.dev.DB_NAME;
-
-            console.log('INFO : ', connectionMetaData);
 
             createConnection(connectionMetaData).then(connection => {
                 this.router.get("/", (req: express.Request, res: express.Response) => {
