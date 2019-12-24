@@ -5,7 +5,9 @@ import {env} from 'process';
 class ConstatntsConfig {
     public configure: {
         CONFIG_DIR: string,
-        DB_INFO: Object
+        ROOT_DIR: string,
+        DB_INFO: Object,
+        WEB_PORT: string
     }
 
     public static bootstrap(): Object {
@@ -16,6 +18,7 @@ class ConstatntsConfig {
         config();
         this.configure = {
             CONFIG_DIR: path.join(__dirname, '../'),
+            ROOT_DIR: path.join(__dirname, '../../'),
             DB_INFO: {
                 dev: {
                     DB_ACCOUNT: 'test',
@@ -31,7 +34,8 @@ class ConstatntsConfig {
                     DB_PORT: env.DB_PORT,
                     DB_NAME: env.DB_NAME
                 }
-            }
+            },
+            WEB_PORT: env.WEB_PORT
         }
     }
 }

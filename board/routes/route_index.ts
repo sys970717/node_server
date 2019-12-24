@@ -21,8 +21,9 @@ class Routes {
         this.router.use(cors())
 
         const CONSTANT_CONFIG = new ConstatntsConfig().configure;
-        let rootPath = CONSTANT_CONFIG.CONFIG_DIR
-        fs.readFile(rootPath+'ormconfig.json', 'utf8', (err, option) => {
+        let rootPath = CONSTANT_CONFIG.ROOT_DIR;
+        let configPath = CONSTANT_CONFIG.CONFIG_DIR;
+        fs.readFile(configPath+'/ormconfig.json', 'utf8', (err, option) => {
             if(err) {
                 console.error('cause error ', err)
             }

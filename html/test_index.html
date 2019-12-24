@@ -49,22 +49,23 @@
                 <p>이름 <input type="text" name="user_nm" v-model="createInfo.user_nm" value="" required="required" placeholde="이름을 입력하세요." /></p>
                 <p>암호 <input type="password" name="user_pw" v-model="createInfo.user_pw" value="" required="required" replaceholder="암호를 입력하세요." /></p>
                 <p>이메일 <input type="email" name="email" v-model="createInfo.email" value="" required="required" replaceholder="이메일을 입력하세요." /></p>
-                <p>인증키 <input type="text" name="auth_key" v-model="createInfo['auth_key']" value="" required="required" replaceholder="인증키를 입력하세요." /></p>
                 <button>submit</button>
             </form>
         </div>
+
+        <dsigninArea></signinArea>
 
         <signin-area></signin-area>
     </div>
 </body>
 
 <script type="text/javascript">
-    Vue.component('signinArea', {
+    const signinArea = Vue.component('signinArea', {
         // 옵션
         props: ['user_email', 'user_pw'],
         template: `
                 <div id="userLogin">
-                    <form name="sign_in_frm" action="/user/login" method="post" enctype="application//json" v-on:submit="sign_in">
+                    <form name="sign_in_frm" action="/user/login" method="post" enctype="application/json" @submit.prevent="sign_in">
                         <div id="sign_area">
                             <p>
                                 <input type="email" name="email" id="email" value="" placeholder="your_email@email.com" v-bind="user_email" required="required" />
@@ -83,15 +84,26 @@
         `,
         methods: {
             sign_in: () => {
-                console.log()
-                if (!this.props.user_email) {
+                console.log(this.user_email)
+                if (!this.user_email) {
                     alert('email을 입력하세요.')
                     return
                 } else if (!this.user_pw) {
                     alert('암호를 입력하세요')
                     return     
                 } else {
-                    
+                    let data = {
+                        'user_email': this.user_email,
+                        'user_pw': this.props.user_pw
+                    }
+                    console.log(data);
+                    axios.post('/user/login', data)
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
                 }
             }
         }
@@ -110,10 +122,29 @@
                 auth_key: ''
             }
         },
+        components: {
+            'signin-area': signinArea
+        },
+        props: {
+            user_email: {
+                type: String,
+                required: true
+            },
+            user_pw: {
+                type: String,
+                required: true
+            }
+        },
+
+        computed() {
+            this.user_email = '';
+            this.user_pw = '';
+        },
+
         methods: {
             user_list: (event) => {
                 var users = this.users;
-                axios.get('http://localhost:3000/user/list')
+                axios.get('http://localhost/user/list')
                 .then((response) => {
                     app.$data.users = response.data
                 })
@@ -126,11 +157,11 @@
             },
             createUser: (event) => {
                 var info = vm.createInfo
-                axios.post('http://localhost:3000/user/create', info)
+                axios.post('http://localhost/user/create', info)
                 .then((response) => {
                     alert('유저가 생성되었습니다.')
                     return
-                }).catch((err) => {
+                }).catch(err => {
                     alert('에러가 발생했습니다. => ', err)
                     return;
                 })
