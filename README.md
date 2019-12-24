@@ -36,12 +36,13 @@
 > - ~aws ec2 에 반영하여 실제 서비스 화면을 만들어볼 예정.
 > - 향후 환율 API 또한 추가해 환율 추이를 볼 수 있는 차트 뷰 반영 예정.
 
-## Inpra 공부
+## infra 공부
 > AWS --> 생활코딩 공부 중 ( https://opentutorials.org/course/2717/11273 )
 
 > Docker
 > - https://blog.cosmosfarm.com/archives/248/%EC%9A%B0%EB%B6%84%ED%88%AC-18-04-%EB%8F%84%EC%BB%A4-docker-%EC%84%A4%EC%B9%98-%EB%B0%A9%EB%B2%95/
 > - https://nicewoong.github.io/development/2017/10/09/basic-usage-for-docker/
+> - https://www.slideshare.net/pyrasis/docker-fordummies-44424016
 > - https://jistol.github.io/docker/2017/09/01/docker-redis/
 
 

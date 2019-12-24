@@ -9,5 +9,6 @@
     "database": "",
     "logging": ["query", "error"],
     "maxQueryExecutionTime": 1000,
-    "logger": "file"
+    "logger": "file",
+    "autoSchemaSync": true
 }
