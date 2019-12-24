@@ -2,8 +2,10 @@ import 'source-map-support/register' // source-map을 사용하기 위해 추가
 import App from './App'
 import * as express from 'express'
 import bodyParser from 'body-parser'
+import {config} from 'dotenv'
 
-const port: number = Number(process.env.PORT || 3000)
+config();
+const port: number = Number(process.env.WEB_PORT || 3000)
 const app: express.Application = new App().app
 
 app.use(bodyParser.json())
