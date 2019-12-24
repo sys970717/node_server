@@ -41,9 +41,22 @@ class UserController {
             userInfoEntity.email = reqInfoData.email
             userInfoEntity.auth_key = authKey
 
-            // Insert
-            getRepository(UserInfo).save(userInfoEntity)
-            res.status(200).send('회원가입을 축하합니다. 로그인하여 사용해주세요.')
+            var validEmail = userInfoEntity.isValidEmail()
+            var validPw = userInfoEntity.isValidPw()
+    
+            console.log(validPw)
+            
+            if (!validEmail.result) {
+                res.status(403).json({'code': '403', 'msg': '가입하지 않은 이메일이거나, 잘못된 비밀번호입니다.'})
+                return
+            } else if(!validPw.result) {
+                res.status(403).json({'code': '403', 'msg': '암호는 8 ~ 20자리, 영문자+숫자+특수기호(최소1개) 조합으로 생성하여 주시기 바랍니다.'})
+                return
+            } else {
+                // Insert
+                getRepository(UserInfo).save(userInfoEntity)
+                res.status(200).send('회원가입을 축하합니다. 로그인하여 사용해주세요.')
+            }
         } catch (e) {
             res.status(404).json({ message: e.message })
             throw new Error(e)
@@ -62,7 +75,7 @@ class UserController {
         var validEmail = user_info.isValidEmail()
         var validPw = user_info.isValidPw()
 
-        console.log(validPw)
+        console.log(reqInfoData);
         
         if (!validEmail.result) {
             res.status(403).json({'code': '403', 'msg': '가입하지 않은 이메일이거나, 잘못된 비밀번호입니다.'})
