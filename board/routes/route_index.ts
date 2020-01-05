@@ -6,6 +6,7 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerSpec from '../swaggerSpec'
 import UserRouter from './UserRouter'
 import ScrapingRouter from './ScrapingRouter'
+import BoardRouter from './BoardRouter'
 import cors from 'cors'
 
 import path from 'path'
@@ -52,6 +53,7 @@ class Routes {
                 
                 this.router.use('/user', new UserRouter().router)
                 this.router.use('/exchange', new ScrapingRouter().router)
+                this.router.use('/board', new BoardRouter().router)
             })
         })
     }    
