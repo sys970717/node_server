@@ -6,7 +6,7 @@ class BoardRouter {
     public router: express.Router
 
     constructor() {
-        this.router
+        this.router = express.Router()
     }
 }
 
