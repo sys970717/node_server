@@ -67,15 +67,16 @@ class UserController {
      * signIn
      */
     public signIn = async (req:Request, res: Response) => {
-        var reqInfoData = req.body
+        var reqInfoData = req.body;
         var user_info = new UserInfo()
-        user_info.email = reqInfoData.email
+        user_info.email = reqInfoData.user_email
         user_info.user_pw = reqInfoData.user_pw
 
         var validEmail = user_info.isValidEmail()
         var validPw = user_info.isValidPw()
 
         console.log(reqInfoData);
+        console.log(user_info);
         
         if (!validEmail.result) {
             res.status(403).json({'code': '403', 'msg': '가입하지 않은 이메일이거나, 잘못된 비밀번호입니다.'})
@@ -90,7 +91,6 @@ class UserController {
                     email: Equal(user_info.email),
                     user_pw: Equal(user_info.user_pw)
                 }).then((result) => {
-                    // console.log('result > ', result)
                     res.status(200).json(result.auth_key)
                 })
             } catch (err) {
