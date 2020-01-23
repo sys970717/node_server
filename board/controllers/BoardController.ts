@@ -13,10 +13,13 @@ class BoardController {
 
     public view = async(req: Request, res: Response) => {
         // OAuth2.0
-        if(req.headers.authorization)
-        res.json({
-            'id': req.param('id')
-        });
+        if(req.headers.authorization) {
+            res.json({
+                'id': req.query.id
+            });
+        } else {
+            res.json({'code': 403, 'message': 'error'})
+        }
     }
 }
 
